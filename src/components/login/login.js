@@ -2,10 +2,21 @@ import React from "react";
 import logo from '/Users/gkubde/loanManagementApp/loan_management_system/src/images/bitsLogo.png';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import { useNavigate } from 'react-router-dom';  // Import the useNavigate hook
 import "@salesforce-ux/design-system/assets/styles/salesforce-lightning-design-system.css";
 import './login.css';
 
 export default function BasicTextFields() {
+  const navigate = useNavigate();
+
+  const handleSignUpClick = () => {
+    navigate('/journey');
+  };
+
+  const handleLoginClick = () => {
+    navigate('/journey'); 
+  };
+
   return (
     <div>
       <div className='slds-grid slds-grid--frame slds-theme--default'>
@@ -29,15 +40,17 @@ export default function BasicTextFields() {
             <TextField id="phoneMob" label="Phone Number" variant="outlined" required />
           </div>
           <div className='slds-col slds-p-around--small'>
-            <Button variant="contained">Sign Up</Button>
+            <Button variant="contained" onClick={handleSignUpClick}>
+              Sign Up
+            </Button>
           </div>
           <div className='slds-col slds-p-around--small'>
-            <Button>Login Instead</Button>
+            <Button onClick={handleLoginClick}>
+              Login Instead
+            </Button>
           </div>
         </div>
-        <div className='slds-col slds-size--2-of-3 slds-border_left loginBackground'>
-          
-        </div>
+        <div className='slds-col slds-size--2-of-3 slds-border_left loginBackground'></div>
       </div>
     </div>
   );
