@@ -14,7 +14,7 @@ import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import logo from '/Users/gkubde/loanManagementApp/loan_management_system/src/images/bitsLogo.png';
 
-const pages = ['Products', 'Pricing', 'Blog'];
+const pages = ['Accounts', 'Credit Cards', 'Loans'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function ResponsiveAppBar() {

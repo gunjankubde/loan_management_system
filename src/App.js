@@ -7,17 +7,26 @@ import NavBar from './components/navBar/navBar';
 import Footer from './components/footer/footer';
 import "@salesforce-ux/design-system/assets/styles/salesforce-lightning-design-system.css";
 
-/* function screenHeight() {
-  console.log('window.innerHeight ' + window.innerHeight);
-  return window.innerHeight;
-} */
-
 function MainLayout() {
   const location = useLocation();
   const isLoginPage = location.pathname === '/';
 
+  const [screenHeight, setScreenHeight] = useState(window.innerHeight);
+
+  useEffect(() => {
+    function updateScreenHeight() {
+      setScreenHeight(window.innerHeight);
+      console.log('Updated window height: ' + window.innerHeight + 'px');
+    }
+
+    window.addEventListener('resize', updateScreenHeight);
+
+    return () => window.removeEventListener('resize', updateScreenHeight);
+  }, []);
+
+
   return (
-    <div className="slds-grid slds-grid_vertical slds-grid--align-spread" style={{ minHeight: window.innerHeight }}>
+    <div className="slds-grid slds-grid_vertical slds-grid--align-spread" style={{ minHeight: `${screenHeight}px` }}>
       {/* Navbar section */}
       {!isLoginPage && (
         <div className="slds-col">

@@ -3,17 +3,27 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { useNavigate } from 'react-router-dom';  // Import the useNavigate hook
 import "@salesforce-ux/design-system/assets/styles/salesforce-lightning-design-system.css";
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import { styled } from '@mui/material/styles';
 
-
-export default function PersonalDetails() {
+export default function AddressDetails() {
     const navigate = useNavigate();
 
     const handleSignUpClick = () => {
         navigate('/journey');
     };
+
+    const VisuallyHiddenInput = styled('input')({
+        clip: 'rect(0 0 0 0)',
+        clipPath: 'inset(50%)',
+        height: 1,
+        overflow: 'hidden',
+        position: 'absolute',
+        bottom: 0,
+        left: 0,
+        whiteSpace: 'nowrap',
+        width: 1,
+    });
 
     return (
         <div className="slds-p-vertical--x-large">
@@ -21,39 +31,33 @@ export default function PersonalDetails() {
 
                 <div className='slds-col slds-p-around--small slds-grid'>
                     <div className="slds-col slds-p-around--small">
-                        <TextField id="firstName" label="First Name" variant="outlined" required />
-                    </div>
-                    <div className="slds-col slds-p-around--small">
-                        <TextField id="lastName" label="Last Name" variant="outlined" required />
+                        <TextField id="addressLine1" label="Address Line 1" variant="outlined" required />
                     </div>
                 </div>
                 <div className='slds-col slds-p-around--small slds-grid'>
                     <div className="slds-col slds-p-around--small">
-                        <TextField id="gender" label="Gender" variant="outlined" required />
-                    </div>
-                    <div className="slds-col slds-p-around--small">
-                        <LocalizationProvider dateAdapter={AdapterDayjs}>
-                            <DatePicker id="birthDate" label="Birth Date"/>
-                        </LocalizationProvider>
+                        <TextField id="addressLine2" label="Address Line 2" variant="outlined" required />
                     </div>
                 </div>
                 <div className='slds-col slds-p-around--small slds-grid'>
                     <div className="slds-col slds-p-around--small">
-                        <TextField id="mobile" label="Mobile Number" variant="outlined" required />
+                        <TextField id="city" label="City" variant="outlined" required />
                     </div>
                     <div className="slds-col slds-p-around--small">
-                        <TextField id="email" label="Email" variant="outlined" required />
+                        <TextField id="state" label="State" variant="outlined" required />
                     </div>
                 </div>
-                <div className='slds-col slds-p-around--small slds-grid'>
+                <div className='slds-col slds-p-around--small slds-grid slds-grid--vertical-align-center'>
                     <div className="slds-col slds-p-around--small">
-                        <TextField id="adhar" label="Adhar Number" variant="outlined" required />
+                        <TextField id="pincode" label="Pincode" variant="outlined" required />
                     </div>
                     <div className="slds-col slds-p-around--small">
-                        <TextField id="pan" label="PAN Number" variant="outlined" required />
+                        <Button component="label" variant="contained" startIcon={<CloudUploadIcon />}>Address Proof
+                            <VisuallyHiddenInput type="file" onChange={(event) => console.log(event.target.files)} multiple />
+                        </Button>
                     </div>
                 </div>
-                <div className='slds-col slds-p-around--small slds-grid'>
+                <div className='slds-col slds-p-around--small'>
                     <Button variant="contained" onClick={handleSignUpClick}>
                         Submit
                     </Button>
